@@ -8,10 +8,26 @@
 	extern int yylex();
 	void yyerror(string s);
 %}
-%token ADD SUB DIV MUL IF ELIF ELSE EQ NEQ LT LTE GT GTE VAR
+%token ADD SUB DIV MUL FUNC IF ELIF ELSE EQ NEQ LT LTE GT GTE IDENT EQUAL
 
 %%
-program: statement_list
+program: line_list
+
+line_list: line | line line_list
+
+line: if_line | var_line
+
+if_line: IF IDENT operator IDENT FUNC
+
+var_line: IDENT EQUAL var
+
+var: IDENT | IDENT operator var | IDENT comparison var
+
+statement: IF | ELIF | ELSE
+
+operator: ADD | SUB | DIV | MUL
+
+comparison: EQ | NEQ | LT | LTE | GT | GTE
 
 
 %%

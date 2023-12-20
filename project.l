@@ -16,13 +16,15 @@
 "if"	{ return IF; }
 "elif"	{ return ELIF; }
 "else"	{ return ELSE; }
+":"	{ return FUNC; }
 "=="	{ return EQ; }
 "!="	{ return NEQ; }
 "<"	{ return LT; }
 "<="	{ return LTE; }
 ">"	{ return GT; }
-">="	{ return GTE;}
-[a-zA-Z]*[0-9]*	{ return VAR; }
+">="	{ return GTE; }
+"="	{ return EQUAL; }
+[a-zA-Z]*[0-9]*	{ return IDENT; }
 \n	
 [ \t]+
 %%
